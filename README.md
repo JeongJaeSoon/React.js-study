@@ -7,6 +7,7 @@ My first React
 ## React 소개
 
 -   컴포넌트를 사용 : 사용자가 태그(화면의 요소)를 정의해서 만들어 사용 -> Component
+
 ```
 <html>
     <body>
@@ -15,7 +16,6 @@ My first React
     </body>
 </html>
 ```
-
 
 1. 가독성
 2. 재사용성
@@ -56,7 +56,7 @@ My first React
     create-react-app
     ```
 
-    가급적 npx 를 사용하여 최신버전을 설치하고 활용
+    가급적 npx 를 사용하여 최신버전을 설치하고 활용 -> 한번만 실행
 
 *   React 프로젝트 생성
 
@@ -80,6 +80,7 @@ My first React
         -   메인페이지 역할
         -   `<div id="root"></div>` 에 컴포넌트가 삽입됨
     -   src
+
         -   대부분의 파일들이 저장됨
         -   `index.js` : 진입(Entry) 파일
             ```js
@@ -87,33 +88,34 @@ My first React
                 <React.StrictMode>
                     <App />
                 </React.StrictMode>,
-                document.getElementById('root')
+                document.getElementById("root")
             );
             ```
         -   `App.js` : 컴포넌트가 작성되어 있음
+
             1. function type
+
                 ```js
-                import React from 'react';
-                import './App.css';
+                import React from "react";
+                import "./App.css";
 
                 function App() {
-                    return (
-                        <div className = "App">
-                        </div>
-                    );
+                    return <div className="App"></div>;
                 }
 
                 export default App;
                 ```
+
             2. class type
+
                 ```js
-                import React, { Component } from 'react';
-                import './App.css';
+                import React, { Component } from "react";
+                import "./App.css";
 
                 class App extends Component {
                     render() {
                         return (
-                            <div className = "App">
+                            <div className="App">
                                 <h1>Hello, React!!!</h1>
                             </div>
                         );
@@ -122,4 +124,29 @@ My first React
 
                 export default App;
                 ```
+
         -   컴포넌트는 반드시 하나의 태그 안에 있어야 함
+        -   `index.css`, `App.js` : 컴포넌트에 css 를 설정
+
+*   React 배포
+
+    -   Production mode application 을 만들 때 build 를 진행
+
+        ```sh
+        npm run build
+        ```
+
+        -   개발한 코드들을 통해, `/build` 디렉터리를 생성
+
+        -   `index.html` 에 불필요한 내용(개발환경에 필요했던 것들)을 제거하고 웹에 필요한 내용만 적용
+
+    -   npm server 프로그램 설치
+
+        ```sh
+        npm install -g serve
+        ```
+
+    -   document root 디렉터리를 지정하여 서버를 실행(옵션 : -s, 디렉터리 : /build)
+        ```sh
+        serve -s build
+        ```
