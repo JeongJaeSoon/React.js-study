@@ -155,13 +155,21 @@ My first React
 
 ## React Syntax
 
-1. Component : 컴포넌트 생성, props, 컴포넌트 파일로 관리(components)하기
-2. State
+### Component
 
-    - Props : 생성한 컴포넌트를 기본적으로 사용자가 외부에서 조작하고 보여주는 것
-        ```html
-        <Component props_name="props_value"
-        ```
-    - State : 사용자는 모르게 Props 에 따라 컴포넌트 내부에서 실제로 구현하는 것, 외부에서 알 필요가 없는 정보를 은닉
+-   컴포넌트 생성, props, 컴포넌트 파일로 관리(components)하기
+-   Components 를 상속 받아 내가 필요로 하는 컴포넌트 정의 -> class
+-   props 를 통해, 컴포넌트에서 다양한 값들을 사용
+-   ~/components/ 디렉터리에서 컴포넌트를 파일별로 관리
+    (import, export -> App.js import)
 
-    -> Props 와 State 는 분리되어 있다.
+### State
+
+-   State 정의 및 사용, Props 전달 및 사용, 항목에 대한 key props 정의
+-   Props : 생성한 컴포넌트를 기본적으로 사용자가 외부에서 조작하고 보여주는 것
+    ```html
+    <Component props_name="props_value"
+    ```
+-   State : 사용자는 모르게 Props 에 따라 컴포넌트 내부에서 실제로 구현하는 것, 외부에서 알 필요가 없는 정보를 은닉
+
+-> Props 와 State 는 분리되어 있다.
