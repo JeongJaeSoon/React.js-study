@@ -1,21 +1,29 @@
 import React, { Component } from "react";
 
+/*
+- 상위 컴포턴트에서  props 를 전달 받고 this.props.~~~ 로 사용
+- 각각 리스트의 항목들은 key 라고 하는 props 를 가져야 함
+    : React 가 내부적으로 동작할 때 사용
+    : key={data[i].id}
+*/
+
 // Table Of Content(TOC)
 class TOC extends Component {
     render() {
+        var lists = [];
+        var data = this.props.data;
+        var i = 0;
+        while (i < data.length) {
+            lists.push(
+                <li key={data[i].id}>
+                    <a href={`/content/data[i].id`}>{data[i].title}</a>
+                </li>
+            );
+            i++;
+        }
         return (
             <nav>
-                <ul>
-                    <li>
-                        <a href="1.html">HTML</a>
-                    </li>
-                    <li>
-                        <a href="2.html">CSS</a>
-                    </li>
-                    <li>
-                        <a href="3.html">JavaScript</a>
-                    </li>
-                </ul>
+                <ul>{lists}</ul>
             </nav>
         );
     }
