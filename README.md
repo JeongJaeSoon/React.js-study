@@ -150,3 +150,7 @@ My first React
         ```sh
         serve -s build
         ```
+
+## React Syntax
+
+1. Component : 컴포넌트 생성, props, 컴포넌트 파일로 관리하기
