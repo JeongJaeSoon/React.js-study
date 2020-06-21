@@ -79,35 +79,12 @@ import "./App.css";
             }.bind(this)}
         >
 
-* - 컴포넌트 이벤트 만들기
-
-    ! - 상위 컴포넌트에서 이벤트를 생성
-        <Subject
-            title={this.state.subject.title}
-            sub={this.state.subject.sub}
-            onChangePage={function () {
-            this.setState({ mode: "welcome" });
-        ></Subject>
-    
-    ! - 하위 컴포넌트에서 상위 이벤트를 props로 호출
-        <a
-            href="/"
-            onClick={function (e) {
-                e.preventDefault();
-                this.props.onChangePage();
-            }.bind(this)}
-        >
-
-* - e.target.dataset.id
-    : 상위 컴포넌트에서 전달한 값을 props 로 접근 가능
-    : "data-~~~" 로 시작하는 속성에는 dataset 으로 접근, ~~~ 는 key 값
 */
 class App extends Component {
     constructor(props) {
         super(props);
         this.state = {
             mode: "read",
-            selected_content_id: 1,
             subject: {
                 title: "Web",
                 sub: "Wrold Wide Web!",
@@ -144,41 +121,49 @@ class App extends Component {
             _title = this.state.welcome.title;
             _desc = this.state.welcome.desc;
         } else if (this.state.mode === "read") {
-            var i = 0;
-            while (i < this.state.contents.length) {
-                var data = this.state.contents[i];
-                if (data.id === this.state.selected_content_id) {
-                    _title = data.title;
-                    _desc = data.desc;
-                    break;
-                }
-                i++;
-            }
+            _title = this.state.contents[0].title;
+            _desc = this.state.contents[0].desc;
         }
 
         console.log("render", this); // this 는 컴포턴트 자신을 가르킴
 
         return (
             <div className="App">
+                {/*
                 <Subject
                     title={this.state.subject.title}
                     sub={this.state.subject.sub}
-                    onChangePage={function () {
-                        this.setState({
-                            mode: "welcome",
-                        });
-                    }.bind(this)}
                 ></Subject>
-                <TOC
-                    data={this.state.contents}
-                    onChangePage={function (id) {
-                        console.log(id);
-                        this.setState({
-                            mode: "read",
-                            selected_content_id: Number(id),
-                        });
-                    }.bind(this)}
-                ></TOC>
+                */}
+
+                <header>
+                    <h1>
+                        <a
+                            href="/"
+                            onClick={function (e) {
+                                console.log(e);
+                                e.preventDefault();
+
+                                /*
+                                let mode = this.state.mode === "read" ? "welcome" : "read";
+                                console.log("hello", mode);
+                                this.setState({ mode: mode, });
+                                */
+
+                                this.setState({
+                                    mode: "welcome",
+                                });
+                                // debugger;
+                            }.bind(this)}
+                        >
+                            {this.state.subject.title}
+                        </a>
+                    </h1>
+                    {this.state.subject.sub}
+                </header>
+
+                <Subject title="React" sub="For UI"></Subject>
+                <TOC data={this.state.contents}></TOC>
                 <Content title={_title} desc={_desc}></Content>
             </div>
         );

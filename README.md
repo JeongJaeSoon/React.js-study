@@ -172,4 +172,10 @@ My first React
     ```
 -   State : 사용자는 모르게 Props 에 따라 컴포넌트 내부에서 실제로 구현하는 것, 외부에서 알 필요가 없는 정보를 은닉
 
--> Props 와 State 는 분리되어 있다.
+    -> Props 와 State 는 분리되어 있다.
+
+### event
+
+-   이벤트 설치 및 state 변경
+-   이벤트 bind(), setState() 함수
+-   컴포넌트에 이벤트 만들기
