@@ -9,35 +9,46 @@ import React, { Component } from "react";
 
 // Table Of Content(TOC)
 class TOC extends Component {
-    render() {
-        console.log("TOC render");
-
-        var lists = [];
-        var data = this.props.data;
-        var i = 0;
-        while (i < data.length) {
-            lists.push(
-                <li key={data[i].id}>
-                    <a
-                        href={`/content/data[i].id`}
-                        data-id={data[i].id}
-                        onClick={function (e) {
-                            e.preventDefault();
-                            this.props.onChangePage(e.target.dataset.id);
-                        }.bind(this)}
-                    >
-                        {data[i].title}
-                    </a>
-                </li>
-            );
-            i++;
-        }
-        return (
-            <nav>
-                <ul>{lists}</ul>
-            </nav>
-        );
+  shouldComponentUpdate(newProps, newState) {
+    console.log(
+      "===> TOC render shouldComponentUpdate",
+      newProps.data,
+      this.props.data,
+    );
+    if (this.props.data === newProps.data) {
+      return false;
     }
+    return true;
+  }
+  render() {
+    console.log("===> TOC render");
+
+    var lists = [];
+    var data = this.props.data;
+    var i = 0;
+    while (i < data.length) {
+      lists.push(
+        <li key={data[i].id}>
+          <a
+            href={`/content/data[i].id`}
+            data-id={data[i].id}
+            onClick={function (e) {
+              e.preventDefault();
+              this.props.onChangePage(e.target.dataset.id);
+            }.bind(this)}
+          >
+            {data[i].title}
+          </a>
+        </li>,
+      );
+      i++;
+    }
+    return (
+      <nav>
+        <ul>{lists}</ul>
+      </nav>
+    );
+  }
 }
 
 // 외부에서 TOC.js 를 통해 TOC class 를 사용할 수 있게 함

@@ -6,7 +6,7 @@ My first React
 
 ## React 소개
 
--   컴포넌트를 사용 : 사용자가 태그(화면의 요소)를 정의해서 만들어 사용 -> Component
+- 컴포넌트를 사용 : 사용자가 태그(화면의 요소)를 정의해서 만들어 사용 -> Component
 
 ```
 <html>
@@ -27,129 +27,129 @@ My first React
 
 ### React Getting Started
 
--   React : https://reactjs.org/docs/getting-started.html
+- React : https://reactjs.org/docs/getting-started.html
 
--   Try React
+- Try React
 
-    -   Online Playgrounds : 온라인 상에서 필요한 환경을 제공
-        (https://codepen.io/pen?&editable=true&editors=0010)
-    -   Add React to a Website : React 의 일부 요소만 사용, 초보자가 개발환경 구축에 어려움이 있음
-    -   Create a New React App : React 에 필요한 것을 모아서 한번에 제공하는 툴 체인을 사용
+  - Online Playgrounds : 온라인 상에서 필요한 환경을 제공
+    (https://codepen.io/pen?&editable=true&editors=0010)
+  - Add React to a Website : React 의 일부 요소만 사용, 초보자가 개발환경 구축에 어려움이 있음
+  - Create a New React App : React 에 필요한 것을 모아서 한번에 제공하는 툴 체인을 사용
 
--   Create a New React App
+- Create a New React App
 
-    -   Create React App
-        : https://github.com/facebook/create-react-app
-    -   npm(node package module) 을 이용하여 환경을 구축
+  - Create React App
+    : https://github.com/facebook/create-react-app
+  - npm(node package module) 을 이용하여 환경을 구축
 
--   node.js 와 npm 설치 확인
+- node.js 와 npm 설치 확인
+
+  ```sh
+  npm -v
+  6.14.4
+  ```
+
+* React 설치 및 설치 확인
+
+  ```sh
+  npm install -g create-react-app
+  create-react-app
+  ```
+
+  가급적 npx 를 사용하여 최신버전을 설치하고 활용 -> 한번만 실행
+
+* React 프로젝트 생성
+
+  ```sh
+  mkdir react-app
+  cd react-app
+  create-react-app .
+  ```
+
+* React 프로젝트 실행
+
+  ```sh
+  npm run start
+  ```
+
+  **localhost:3000** 으로 접속
+
+* React 디렉터리 구조
+
+  - public/index.html
+    - 메인페이지 역할
+    - `<div id="root"></div>` 에 컴포넌트가 삽입됨
+  - src
+
+    - 대부분의 파일들이 저장됨
+    - `index.js` : 진입(Entry) 파일
+      ```js
+      ReactDOM.render(
+        <React.StrictMode>
+          <App />
+        </React.StrictMode>,
+        document.getElementById("root"),
+      );
+      ```
+    - `App.js` : 컴포넌트가 작성되어 있음
+
+      1. function type
+
+         ```js
+         import React from "react";
+         import "./App.css";
+
+         function App() {
+           return <div className="App"></div>;
+         }
+
+         export default App;
+         ```
+
+      2. class type
+
+         ```js
+         import React, { Component } from "react";
+         import "./App.css";
+
+         class App extends Component {
+           render() {
+             return (
+               <div className="App">
+                 <h1>Hello, React!!!</h1>
+               </div>
+             );
+           }
+         }
+
+         export default App;
+         ```
+
+    - 컴포넌트는 반드시 하나의 태그 안에 있어야 함
+    - `index.css`, `App.js` : 컴포넌트에 css 를 설정
+
+* React 배포
+
+  - Production mode application 을 만들 때 build 를 진행
 
     ```sh
-    npm -v
-    6.14.4
+    npm run build
     ```
 
-*   React 설치 및 설치 확인
+    - 개발한 코드들을 통해, `/build` 디렉터리를 생성
+
+    - `index.html` 에 불필요한 내용(개발환경에 필요했던 것들)을 제거하고 웹에 필요한 내용만 적용
+
+  - npm server 프로그램 설치
 
     ```sh
-    npm install -g create-react-app
-    create-react-app
+    npm install -g serve
     ```
 
-    가급적 npx 를 사용하여 최신버전을 설치하고 활용 -> 한번만 실행
-
-*   React 프로젝트 생성
-
+  - document root 디렉터리를 지정하여 서버를 실행(옵션 : -s, 디렉터리 : /build)
     ```sh
-    mkdir react-app
-    cd react-app
-    create-react-app .
+    serve -s build
     ```
-
-*   React 프로젝트 실행
-
-    ```sh
-    npm run start
-    ```
-
-    **localhost:3000** 으로 접속
-
-*   React 디렉터리 구조
-
-    -   public/index.html
-        -   메인페이지 역할
-        -   `<div id="root"></div>` 에 컴포넌트가 삽입됨
-    -   src
-
-        -   대부분의 파일들이 저장됨
-        -   `index.js` : 진입(Entry) 파일
-            ```js
-            ReactDOM.render(
-                <React.StrictMode>
-                    <App />
-                </React.StrictMode>,
-                document.getElementById("root")
-            );
-            ```
-        -   `App.js` : 컴포넌트가 작성되어 있음
-
-            1. function type
-
-                ```js
-                import React from "react";
-                import "./App.css";
-
-                function App() {
-                    return <div className="App"></div>;
-                }
-
-                export default App;
-                ```
-
-            2. class type
-
-                ```js
-                import React, { Component } from "react";
-                import "./App.css";
-
-                class App extends Component {
-                    render() {
-                        return (
-                            <div className="App">
-                                <h1>Hello, React!!!</h1>
-                            </div>
-                        );
-                    }
-                }
-
-                export default App;
-                ```
-
-        -   컴포넌트는 반드시 하나의 태그 안에 있어야 함
-        -   `index.css`, `App.js` : 컴포넌트에 css 를 설정
-
-*   React 배포
-
-    -   Production mode application 을 만들 때 build 를 진행
-
-        ```sh
-        npm run build
-        ```
-
-        -   개발한 코드들을 통해, `/build` 디렉터리를 생성
-
-        -   `index.html` 에 불필요한 내용(개발환경에 필요했던 것들)을 제거하고 웹에 필요한 내용만 적용
-
-    -   npm server 프로그램 설치
-
-        ```sh
-        npm install -g serve
-        ```
-
-    -   document root 디렉터리를 지정하여 서버를 실행(옵션 : -s, 디렉터리 : /build)
-        ```sh
-        serve -s build
-        ```
 
 <br>
 
@@ -157,25 +157,69 @@ My first React
 
 ### Component
 
--   컴포넌트 생성, props, 컴포넌트 파일로 관리(components)하기
--   Components 를 상속 받아 내가 필요로 하는 컴포넌트 정의 -> class
--   props 를 통해, 컴포넌트에서 다양한 값들을 사용
--   ~/components/ 디렉터리에서 컴포넌트를 파일별로 관리
-    (import, export -> App.js import)
+- 컴포넌트 생성, props, 컴포넌트 파일로 관리(components)하기
+- Components 를 상속 받아 내가 필요로 하는 컴포넌트 정의 -> class
+- props 를 통해, 컴포넌트에서 다양한 값들을 사용
+- ~/components/ 디렉터리에서 컴포넌트를 파일별로 관리
+  (import, export -> App.js import)
 
 ### State
 
--   State 정의 및 사용, Props 전달 및 사용, 항목에 대한 key props 정의
--   Props : 생성한 컴포넌트를 기본적으로 사용자가 외부에서 조작하고 보여주는 것
-    ```html
-    <Component props_name="props_value"
-    ```
--   State : 사용자는 모르게 Props 에 따라 컴포넌트 내부에서 실제로 구현하는 것, 외부에서 알 필요가 없는 정보를 은닉
+- State 정의 및 사용, Props 전달 및 사용, 항목에 대한 key props 정의
+- Props : 생성한 컴포넌트를 기본적으로 사용자가 외부에서 조작하고 보여주는 것
+  ```html
+  <Component props_name="props_value"
+  ```
+- State : 사용자는 모르게 Props 에 따라 컴포넌트 내부에서 실제로 구현하는 것, 외부에서 알 필요가 없는 정보를 은닉
 
-    -> Props 와 State 는 분리되어 있다.
+  -> Props 와 State 는 분리되어 있다.
 
 ### event
 
--   이벤트 설치 및 state 변경
--   이벤트 bind(), setState() 함수
--   컴포넌트에 이벤트 만들기
+- 이벤트 설치 및 state 변경
+- 이벤트 bind(), setState() 함수
+- 컴포넌트에 이벤트 만들기
+
+### shouldComponentUpdate()
+
+- `render()` 이전에 실행됨
+- `shouldComponentUpdate()` 의 return 값에 따라 `render()` 함수의 실행 여부가 결정
+
+  ```javascript
+  shouldComponentUpdate(){
+      return false;     // render() 미실행 -> Component 가 변경되지 않음
+      return true;      // render() 실행   -> Component 가 변경
+  }
+  ```
+
+* **newProps.data** 와 **this.props.data** 를 비교하여, `render()` 실행여부 결정
+  (불필요한 `render()` 의 실행을 막음 -> 성능 향상)
+
+  ```javascript
+  shouldComponentUpdate(newProps, newState){
+      console.log(newProps.data)        // 새롭게 변경되는 props
+      console.log(this.props.data)      // 기존에 사용하던 props
+
+      if (this.props.data === newProps.data) {
+          return false;
+      }
+      return true;
+  }
+  ```
+
+### 배열과 객체의 복제
+
+- 배열의 복제
+
+  ```javascript
+  var a = [1, 2, 3];
+  var b = Array.from(a);
+  ```
+
+- 객체의 복제
+
+  ```javascript
+  var a = { name: "Hong Gill Dong" };
+  var b = Object.assign({}, a);
+  console.log(a, b, a === b); // a 와 b 는 각각 다른 객체
+  ```
