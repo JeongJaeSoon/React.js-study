@@ -4,6 +4,16 @@ My first React
 
 <br>
 
+## 목차
+
+[1. React 소개](#React-소개)
+
+[2. 개발환경 구축](#개발환경-구축)
+
+[3. React Syntax](#React-Syntax)
+
+[4. Redux](#Redux)
+
 ## React 소개
 
 - 컴포넌트를 사용 : 사용자가 태그(화면의 요소)를 정의해서 만들어 사용 -> Component
@@ -223,3 +233,111 @@ My first React
   var b = Object.assign({}, a);
   console.log(a, b, a === b); // a 와 b 는 각각 다른 객체
   ```
+
+## Redux
+
+<img width="1761" alt="KakaoTalk_Photo_2020-07-31-04-26-58" src="https://user-images.githubusercontent.com/53788601/88965717-1e3f5700-d2e6-11ea-9374-f1a086ca5045.png">
+
+### state 와 render 의 관계
+
+- store : Redux 의 핵심, 정보가 저장되는 곳
+  
+  - state : 실제 정보가 저장, 직접 접속이 불가능, 다른 것을 통해서 접근
+  - reducer : reducer() 를 사용하여 Redux 에 값을 저장, 생성(??)
+    ```javascript
+    function reducer(oldState, action) {
+      // ...
+    }
+
+    var store = Redux.createStore(reducer);
+    ```
+  - dispatch : action 이 dispatch 에 전달됨
+    ```javascript
+    <form onsubmit="
+      // ...
+      store.dispatch({
+        type: "create",
+        payloade: {
+          title: title,
+          desc: desc
+        }
+      });
+    ">
+    ```
+    1. reducer 를 통해 state 를 변경(현재 state, 객체의 값)
+        ```javascript
+        function reducer(state, action) {
+          if (action.type === "create") {
+            var newContents = oldStae.contents.concat();
+            var newMaxId = oldState.maxId + 1;
+            newContents.push({
+              id: newMaxId,
+              title: action.payload.title,
+              desc: action.payload.desc
+            })
+            return Object.assign({}, state, {
+              contents: newContents,
+              maxId: newMaxId,
+              mode: "read",
+              selectedId: newMaxId
+            })
+          }
+        }
+        ```
+    2. subscribe 를 통해 render 를 호출
+   
+  - subscribe : state 값이 바뀔 때마다, render 함수를 호출
+    ```javascript
+    store.subscribe(render);
+    ```
+  - getState : render 가 getState 를 통해 state 의 값에 접근 / 전달
+    ```javascript
+    function render() {
+      var state = store.getState();
+      // ...
+      document.querySelector("#app").innerHTML = `
+        <h1>WEB</h1>
+        ...
+      `
+    }
+    ```
+
+- render : Redux 와 관련 없이, 사용자가 작성하는 코드 / UI 를 작성 -> 화면 갱신
+    
+### Getting Started with Redux
+
+- npm install
+  ```sh
+  npm install --save redux
+  ```
+- CDN : https://cdnjs.cloudflare.com/ajax/libs/redux/4.0.5/redux.min.js
+
+### Redux 의 적용
+
+1. store 생성
+   ```javascript
+    // reducer 은 state 와 action 을 매개변수로 전달받음
+    function reducer(state, action) {
+      // reducer 로 "초기 state 의 값"을 만들어 줌
+      if (state === undefined) {
+        return {
+          color: "yellow",
+        };
+      }
+    }
+    var store = Redux.createStore(reducer);
+    console.log(store.getState());
+
+    function red() {
+      var state = store.getState();
+      document.querySelector("#red").innerHTML = `
+            <div class="container" id="component_red" style="background-color:${state.color}">
+                <h1>red</h1>
+                <input type="button" value="fire" onclick= "
+                    document.querySelector('#component_red').style.backgroundColor = 'red';
+                "/>
+            </div>
+        `;
+    }
+    red();
+   ```
