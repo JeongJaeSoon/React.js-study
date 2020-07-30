@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>with Redux</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/redux/4.0.5/redux.min.js"></script>
+    <style>
+      .container {
+        border: 5px solid black;
+        padding: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="red"></div>
+    <script>
+      // reducer 은 state 와 action 을 매개변수로 전달받음
+      function reducer(state, action) {
+        // reducer 로 "초기 state 의 값"을 만들어 줌
+        if (state === undefined) {
+          return {
+            color: "yellow",
+          };
+        }
+      }
+      var store = Redux.createStore(reducer);
+      console.log(store.getState());
+
+      function red() {
+        var state = store.getState();
+        document.querySelector("#red").innerHTML = `
+              <div class="container" id="component_red" style="background-color:${state.color}">
+                  <h1>red</h1>
+                  <input type="button" value="fire" onclick= "
+                      document.querySelector('#component_red').style.backgroundColor = 'red';
+                  "/>
+              </div>
+          `;
+      }
+      red();
+    </script>
+  </body>
+</html>
