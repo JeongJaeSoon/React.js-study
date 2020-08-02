@@ -396,3 +396,9 @@ My first React
         ```javascript
         store.subscribe(red);
         ```
+
+### 정리
+
+- store 생성, state 사용
+- action 을 dispatch 로 전달
+- subscribe 로 자동 갱신, 글생성, 글삭제
